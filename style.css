@@ -5,11 +5,16 @@
     width : 100px;
 }
 
-.calculatorButton {
+.digitButton {
+    width : 22px;
+}
+
+.operatorButton {
     width : 22px;
 }
 
 #inputField{
     width: 80px;
-
+    text-align: right;
+    
 }

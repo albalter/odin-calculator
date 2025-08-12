@@ -28,3 +28,11 @@ function operate (a, b, operator) {
     }
 }
 
+/* going over the digit buttons making sure they react to key press */
+const inputField = document.getElementById("inputField");
+let button = document.getElementById("1");
+button.addEventListener("click", ()=> {
+    console.log(inputField.textContent)
+    inputField.value = button.id + inputField.value
+})
+
