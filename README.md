@@ -1,0 +1,1 @@
+This is an assignment project for TOP for a single operation calculator (no parsing of formulas is implemented)
