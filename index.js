@@ -128,6 +128,11 @@ function computeCurrentStack(){
     }
 }
 
+function clearStackMemory(){
+    stack.length = 0;
+    stackTrace.textContent = "";    
+}
+
 let button1 = document.getElementById("1");
 button1.addEventListener("click", ()=> {
     inputDigit(button1.id)
@@ -136,6 +141,11 @@ button1.addEventListener("click", ()=> {
 let buttonC = document.getElementById("clear");
 buttonC.addEventListener("click", ()=>{
     clearInputField();
+})
+let ButtonCE = document.getElementById("clearStack");
+ButtonCE.addEventListener("click", ()=> {
+    clearInputField();
+    clearStackMemory();
 })
 
 let buttonAdd = document.getElementById("add");
@@ -148,3 +158,4 @@ buttonEquals.addEventListener("click", () => {
     inputOperation(buttonEquals.textContent)
     computeCurrentStack();
 })
+
