@@ -102,14 +102,28 @@ function clearStack () {
 
 function inputOperation (operation){
     //make sure that input of digits in the field starts fresh now
-    if (!numberInputOverwriteToggle){
-        console.log(stack)
-        numberInputOverwriteToggle = true;
-        stack[0]=inputField.value;
-        stack[1]=operation;
-    }
+    if (stack.length == 0) {
+        if (!numberInputOverwriteToggle){
+            console.log(stack)
+            numberInputOverwriteToggle = true;
+            stack[0]=inputField.value;
+            stack[1]=operation;
+            updateStackTrace()
+        }
+    } else if (stack.length == 2) {
+        if (!numberInputOverwriteToggle){
+            numberInputOverwriteToggle = true;
+            computeCurrentStack();
+            updateInputField(stack[0])
+            updateStackTrace()
+        }
+    } else if (stack.length == 3) {
+        if (!numberInputOverwriteToggle){
+            numberInputOverwriteToggle = true;
+        
+        }
 
-    updateStackTrace()
+    }
 }
 
 function updateInputField(val){
@@ -119,9 +133,7 @@ function updateInputField(val){
 function computeCurrentStack(){
     if (stack.length === 2)
     {
-        stack[0] = operate(stack[2], stack[0], stack[1])
-        stack[1] = stack[1]
-        stack[2] = stack[2]
+        stack[0] = operate(inputField.value, stack[0], stack[1])
         updateStackTrace();
         updateInputField(stack[0])
     }
