@@ -94,6 +94,9 @@ function updateStackTrace() {
         case 3:
             stackTrace.textContent = `${stack[0]} ${stack[1]} ${stack[2]}`
             break;
+        case 4:
+            stackTrace.textContent = `${stack[0]} ${stack[1]} ${stack[2]} ${stack[3]}`
+            break;
     }       
 }
 
@@ -118,9 +121,12 @@ function inputOperation (operation){
                 computeCurrentStack();        
                 updateStackTrace()
             }
-        } else if (stack.length == 3) {
+        } else if (stack.length == 4) {
             if (!numberInputOverwriteToggle){
-                numberInputOverwriteToggle = true;        
+                numberInputOverwriteToggle = true;
+                stack[1]=operation;
+                computeCurrentStack();        
+                updateStackTrace();
             }
         }
     } else if (stack.length ==0) {
@@ -132,10 +138,22 @@ function inputOperation (operation){
         }
     } else if (stack.length == 2 ) {
         if (!numberInputOverwriteToggle){
-            numberInputOverwriteToggle = true;
-            stack[1]=operation;//equality
-            stack[0]=inputField.value;
+            numberInputOverwriteToggle = true;            
+            stack[2]=inputField.value;
+            stack[3]=operation;//equality
+            computeCurrentStack();
             updateStackTrace()
+        }    
+    } else if (stack.length == 4 ) {
+        if (!numberInputOverwriteToggle){
+            numberInputOverwriteToggle = true;
+            stack[0]= inputField.value;
+            computeCurrentStack();
+            updateStackTrace()
+        } else {
+            stack[2]= inputField.value;
+            computeCurrentStack();
+            updateStackTrace();
         }    
     }
  }
@@ -151,6 +169,12 @@ function computeCurrentStack(){
         logStack();
         stack[0] = operate(Number(inputField.value), Number(stack[0]), stack[1])
         updateInputField(stack[0])
+        numberInputOverwriteToggle = true;
+    } else if (stack.length === 4)
+    {   
+        logStack();
+        let result = operate(Number(stack[2]), Number(stack[0]), stack[1])
+        updateInputField(result)
         numberInputOverwriteToggle = true;
     }
 }
@@ -183,6 +207,5 @@ buttonAdd.addEventListener("click", () =>{
 let buttonEquals = document.getElementById("evaluate");
 buttonEquals.addEventListener("click", () => {
     inputOperation(buttonEquals.textContent)
-    computeCurrentStack();
 })
 

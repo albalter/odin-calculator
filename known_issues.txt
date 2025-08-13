@@ -1,0 +1,5 @@
+8/13/25 5:49
+while there is an equalaity operator being pressed
+with an equality operator already on the stack
+it forms an expression similar to x = x =, which
+can be seen as a bug
