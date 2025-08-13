@@ -133,7 +133,8 @@ function inputOperation (operation){
     } else if (stack.length == 2 ) {
         if (!numberInputOverwriteToggle){
             numberInputOverwriteToggle = true;
-            stack [2] = stack[0]
+            stack[1]=operation;//equality
+            stack[0]=inputField.value;
             updateStackTrace()
         }    
     }
