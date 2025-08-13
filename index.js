@@ -119,10 +119,8 @@ function inputOperation (operation){
         }
     } else if (stack.length == 3) {
         if (!numberInputOverwriteToggle){
-            numberInputOverwriteToggle = true;
-        
+            numberInputOverwriteToggle = true;        
         }
-
     }
 }
 
@@ -132,8 +130,9 @@ function updateInputField(val){
 }
 function computeCurrentStack(){
     if (stack.length === 2)
-    {
-        stack[0] = operate(inputField.value, stack[0], stack[1])
+    {   
+        logStack();
+        stack[0] = operate(Number(inputField.value), Number(stack[0]), stack[1])
         updateStackTrace();
         updateInputField(stack[0])
     }
