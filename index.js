@@ -85,8 +85,15 @@ function inputDigit (digit){
 
 function updateStackTrace() {
     stackTrace.textContent = ""
-    for (let i=stack.length; i>0; i--)
-        stackTrace.textContent = String(stack[i])+" "+ stackTrace.textContent
+    //console.log(stack.length)
+    switch (stack.length) {
+        case 2:
+            stackTrace.textContent = `${stack[0]} ${stack[1]}`
+            break;
+        case 3:
+            stackTrace.textContent = `${stack[0]} ${stack[1]} ${stack[2]}`
+            break;
+    }       
 }
 
 function clearStack () {
@@ -94,27 +101,19 @@ function clearStack () {
 }
 
 function inputOperation (operation){
-    numberInputOverwriteToggle = true;
-    stack.push(inputField.value);
-    stack.push(operation);
-    updateStackTrace()
-    /*
-    if (stack.length == 1){                
-        stack.push(operation);
-        stack.push(inputField.value);
-        logStack();
-        computeStack();
-        clearInputField();
-    } else if (stack.length == 0) {
-        stack.push(inputField.value);
-        stack.push(operation);
-        clearInputField();
-        logStack();
+    //make sure that input of digits in the field starts fresh now
+    if (!numberInputOverwriteToggle){
+        console.log(stack)
+        numberInputOverwriteToggle = true;
+        stack[0]=inputField.value;
+        stack[1]=operation;
     }
-    */
+
+    updateStackTrace()
+}
+
 function updateInputField(val){
     inputField.value = val; 
-}
 
 }
 function computeCurrentStack(){
