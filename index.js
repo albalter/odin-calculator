@@ -52,22 +52,26 @@ Pseudocode
 const inputField = document.getElementById("inputField");
 const stackTrace = document.getElementById("stackTrace");
 const stack = []
+//on TRUE -- overwrite
+//on FALSE -- append
+numberInputOverwriteToggle = true; 
 
 function logStack(){
     console.log(`Stack depth: ${stack.length} ${stack[0]} ${stack[1]} ${stack[2]}`)
 }
 
-function inputFieldClear (){
+function clearInputField (){
     inputField.value = '0';
 }
 
 function inputDigit (digit){
     //console.log(`${inputField.value !== '0'}`)
-    if (inputField.value != 0)
+    if (numberInputOverwriteToggle)
     {
-        inputField.value = digit + inputField.value;
-    } else {
         inputField.value = digit
+        numberInputOverwriteToggle = false        
+    } else {
+        inputField.value = digit + inputField.value;        
     }
 }
 
@@ -80,18 +84,32 @@ function clearStack () {
     stack.length = 0;
 }
 
+function computeStack(){
+    if (stack.length === 2)
+    {
+        stack[0] = operate(stack[2], stack[0], stack[1]) //a, b, operator
+        stack[1] = stack[1]
+        stack.length = 1
+    }
+}
+
 function inputOperation (operation){
-    if (stack.length > 0){        
-        stack.push(inputField.value);
+    numberInputOverwriteToggle = true;
+    stack.push(operation);
+    /*
+    if (stack.length == 1){                
         stack.push(operation);
+        stack.push(inputField.value);
         logStack();
-        clearStack();
-    } else {
+        computeStack();
+        clearInputField();
+    } else if (stack.length == 0) {
         stack.push(inputField.value);
         stack.push(operation);
-        inputFieldClear();
+        clearInputField();
         logStack();
     }
+    */
 }
 
 
@@ -102,7 +120,7 @@ button1.addEventListener("click", ()=> {
 
 let buttonC = document.getElementById("clear");
 buttonC.addEventListener("click", ()=>{
-    inputFieldClear();
+    clearInputField();
 })
 
 let buttonAdd = document.getElementById("add");
