@@ -59,6 +59,7 @@ const stackTrace = document.getElementById("stackTrace");
 //stack[0] accumulator
 //stack[1] operation
 //stack[2] operand
+//stack[3] expression w. equailty symbol
 const stack = []
 //on TRUE -- overwrite
 //on FALSE -- append
@@ -101,28 +102,43 @@ function clearStack () {
 }
 
 function inputOperation (operation){
-    //make sure that input of digits in the field starts fresh now
-    if (stack.length == 0) {
+    if (operation !== '=') {
+        if (stack.length == 0) {
+            if (!numberInputOverwriteToggle){
+                console.log(stack)
+                numberInputOverwriteToggle = true;
+                stack[0]=inputField.value;
+                stack[1]=operation;
+                updateStackTrace()
+            }
+        } else if (stack.length == 2 ) {
+            if (!numberInputOverwriteToggle){
+                numberInputOverwriteToggle = true;
+                stack[1]=operation;
+                computeCurrentStack();        
+                updateStackTrace()
+            }
+        } else if (stack.length == 3) {
+            if (!numberInputOverwriteToggle){
+                numberInputOverwriteToggle = true;        
+            }
+        }
+    } else if (stack.length ==0) {
         if (!numberInputOverwriteToggle){
-            console.log(stack)
             numberInputOverwriteToggle = true;
             stack[0]=inputField.value;
             stack[1]=operation;
             updateStackTrace()
         }
-    } else if (stack.length == 2) {
+    } else if (stack.length == 2 ) {
         if (!numberInputOverwriteToggle){
             numberInputOverwriteToggle = true;
-            computeCurrentStack();
-            updateInputField(stack[0])
+            stack [2] = stack[0]
             updateStackTrace()
-        }
-    } else if (stack.length == 3) {
-        if (!numberInputOverwriteToggle){
-            numberInputOverwriteToggle = true;        
-        }
+        }    
     }
-}
+ }
+
 
 function updateInputField(val){
     inputField.value = val; 
@@ -133,8 +149,8 @@ function computeCurrentStack(){
     {   
         logStack();
         stack[0] = operate(Number(inputField.value), Number(stack[0]), stack[1])
-        updateStackTrace();
         updateInputField(stack[0])
+        numberInputOverwriteToggle = true;
     }
 }
 
