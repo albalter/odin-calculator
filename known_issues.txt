@@ -21,4 +21,4 @@ why it was overlooked. looking into this now. -- RESOLVED
 
 8/14/25 while inputing a line of ops "8 * 9 /" we get 0.888888, which
 is wrond since we would normally want to get product of 8 and 9, posssibly 
-followed by the division op, but not this. pivoting to this issue
+followed by the division op, but not this. pivoting to this issue -- RESOLVED

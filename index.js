@@ -120,15 +120,16 @@ function inputOperation (operation){
         } else if (stack.length == 2 ) {
             if (!numberInputOverwriteToggle){
                 numberInputOverwriteToggle = true;
+                computeCurrentStack();
                 stack[1]=operation;
-                computeCurrentStack();        
                 updateStackTrace()
             }
         } else if (stack.length == 4) {
             if (!numberInputOverwriteToggle){
-                numberInputOverwriteToggle = true;
-                stack[1]=operation;
+                numberInputOverwriteToggle = true;                
                 computeCurrentStack();
+                stack.length = 2
+                stack[1]=operation;
                 updateStackTrace();
             } else {
                 stack[0]=inputField.value;
