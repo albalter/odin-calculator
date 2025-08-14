@@ -148,7 +148,8 @@ function inputOperation (operation){
             updateStackTrace()
         }
     } else if (stack.length == 2 ) {
-        if (!numberInputOverwriteToggle){
+        if (!numberInputOverwriteToggle ||
+             inputField.value== "0"){
             numberInputOverwriteToggle = true;            
             stack[2]=inputField.value;
             stack[3]=operation;//equality
@@ -242,8 +243,13 @@ button9.addEventListener("click", ()=> {
 
 let button0 = document.getElementById("0");
 button0.addEventListener("click", ()=> {
-    if (inputField.value !== "0"){
-        inputDigit(button0.id)
+    if (inputField.value !== "0" ){
+        if (!numberInputOverwriteToggle){
+            numberInputOverwriteToggle = false
+            inputDigit(button0.id)
+        } else {
+            inputField.value = 0;
+        }  
     }    
 })
 

@@ -32,4 +32,13 @@ putting in 6 garners the same exception (should just 7/6) -- RESOLVED
 
 8/14/2025 4:12 -- inputs like 03333 are possible, but not always (some
 guards are inb place). Working to narrow down what makes this possible
+update inputs like 459 + 0333 are possible, looking to resolve the issue.
+strings like 00333 are not being formed.
+
+-- I narrowed the condition to only work with "fresh" values, not
+appended values, but now on the condition of 83 * 0 we can't input the zero,
+so it's still bugged. Needs more work. -- 5:18 RESOLVED
+
+-- 5:20 Equality sign doesn't always do it's thing, trying to 
+narrow down further.
 
