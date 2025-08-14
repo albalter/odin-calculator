@@ -108,7 +108,9 @@ function clearStack () {
 function inputOperation (operation){
     if (operation !== '=') {
         if (stack.length == 0) {
-            if (!numberInputOverwriteToggle){
+            if (!numberInputOverwriteToggle ||
+                inputField.value == "0"
+            ){
                 console.log(stack)
                 numberInputOverwriteToggle = true;
                 stack[0]=inputField.value;
