@@ -3,3 +3,6 @@ while there is an equalaity operator being pressed
 with an equality operator already on the stack
 it forms an expression similar to x = x =, which
 can be seen as a bug
+
+8/13/25 9:12
+signifier inputs are happening in the reverse order

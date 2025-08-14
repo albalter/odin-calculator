@@ -80,7 +80,8 @@ function inputDigit (digit){
         inputField.value = digit
         numberInputOverwriteToggle = false        
     } else {
-        inputField.value = digit + inputField.value;        
+        //inputField.value = digit + inputField.value;        
+        inputField.value = inputField.value + digit;
     }
 }
 
@@ -125,7 +126,12 @@ function inputOperation (operation){
             if (!numberInputOverwriteToggle){
                 numberInputOverwriteToggle = true;
                 stack[1]=operation;
-                computeCurrentStack();        
+                computeCurrentStack();
+                updateStackTrace();
+            } else {
+                stack[0]=inputField.value;
+                stack[1]=operation;
+                stack.length = 2;
                 updateStackTrace();
             }
         }
@@ -145,16 +151,14 @@ function inputOperation (operation){
             updateStackTrace()
         }    
     } else if (stack.length == 4 ) {
-        if (!numberInputOverwriteToggle){
-            numberInputOverwriteToggle = true;
-            stack[0]= inputField.value;
+        if (!numberInputOverwriteToggle) {
+            numberInputOverwriteToggle = false;
             computeCurrentStack();
             updateStackTrace()
-        } else {
-            stack[2]= inputField.value;
+        } else {            
             computeCurrentStack();
-            updateStackTrace();
-        }    
+            updateStackTrace()
+        }
     }
  }
 
@@ -173,6 +177,7 @@ function computeCurrentStack(){
     } else if (stack.length === 4)
     {   
         logStack();
+        //stack[0] = inputField.value
         let result = operate(Number(stack[2]), Number(stack[0]), stack[1])
         updateInputField(result)
         numberInputOverwriteToggle = true;
@@ -189,14 +194,64 @@ button1.addEventListener("click", ()=> {
     inputDigit(button1.id)
 })
 
+let button2 = document.getElementById("2");
+button2.addEventListener("click", ()=> {
+    inputDigit(button2.id)
+})
+
+let button3 = document.getElementById("3");
+button3.addEventListener("click", ()=> {
+    inputDigit(button3.id)
+})
+
+let button4 = document.getElementById("4");
+button4.addEventListener("click", ()=> {
+    inputDigit(button4.id)
+})
+
+let button5 = document.getElementById("5");
+button5.addEventListener("click", ()=> {
+    inputDigit(button5.id)
+})
+
+let button6 = document.getElementById("6");
+button6.addEventListener("click", ()=> {
+    inputDigit(button6.id)
+})
+
+let button7 = document.getElementById("7");
+button7.addEventListener("click", ()=> {
+    inputDigit(button7.id)
+})
+
+let button8 = document.getElementById("8");
+button8.addEventListener("click", ()=> {
+    inputDigit(button8.id)
+})
+
+let button9 = document.getElementById("9");
+button9.addEventListener("click", ()=> {
+    inputDigit(button9.id)
+})
+
+let button0 = document.getElementById("0");
+button0.addEventListener("click", ()=> {
+    if (inputField.value !== "0"){
+        inputDigit(button0.id)
+    }    
+})
+
+
 let buttonC = document.getElementById("clear");
 buttonC.addEventListener("click", ()=>{
     clearInputField();
+    numberInputOverwriteToggle=true;
 })
 let ButtonCE = document.getElementById("clearStack");
 ButtonCE.addEventListener("click", ()=> {
     clearInputField();
     clearStackMemory();
+    numberInputOverwriteToggle=true;
 })
 
 let buttonAdd = document.getElementById("add");
