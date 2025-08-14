@@ -155,7 +155,8 @@ function inputOperation (operation){
             numberInputOverwriteToggle = false;
             computeCurrentStack();
             updateStackTrace()
-        } else {            
+        } else {
+            stack[0] = inputField.value;
             computeCurrentStack();
             updateStackTrace()
         }
