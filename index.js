@@ -11,8 +11,10 @@ function multiply (a, b) {
 };
 
 function divide (a, b) {
-    if (a !== 0) 
-        return b/a
+    if (!a) {
+        throw new Error("Invalid divisor " + a);
+    }
+    return b/a
 }
 
 function operate (a, b, operator) {
@@ -156,6 +158,7 @@ function inputOperation (operation){
     } else if (stack.length == 4 ) {
         if (!numberInputOverwriteToggle) {
             numberInputOverwriteToggle = false;
+            stack[2]=inputField.value;
             computeCurrentStack();
             updateStackTrace()
         } else {
@@ -165,7 +168,6 @@ function inputOperation (operation){
         }
     }
  }
-
 
 function updateInputField(val){
     inputField.value = val; 
@@ -274,11 +276,21 @@ buttonMultiply.addEventListener("click", () =>{
 
 let buttonDivide = document.getElementById("divide");
 buttonDivide.addEventListener("click", () =>{
-    inputOperation(buttonDivide.textContent)
+    try {
+        inputOperation(buttonDivide.textContent)
+    } catch (error)
+    {
+        alert("You are trying to divide by zero. Please try doing something else")
+    }
 })
 
 let buttonEquals = document.getElementById("evaluate");
 buttonEquals.addEventListener("click", () => {
-    inputOperation(buttonEquals.textContent)
+    try {
+        inputOperation(buttonEquals.textContent)
+    } catch (error)
+    {
+        alert("You are trying to divide by zero. Please try doing something else")
+    }
 })
 

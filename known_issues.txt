@@ -22,3 +22,14 @@ why it was overlooked. looking into this now. -- RESOLVED
 8/14/25 while inputing a line of ops "8 * 9 /" we get 0.888888, which
 is wrond since we would normally want to get product of 8 and 9, posssibly 
 followed by the division op, but not this. pivoting to this issue -- RESOLVED
+
+7/0 bugs the calculator to not do any operation and the stack trace
+display gets stuck. pivoting to the issue. 
+
+-- It's just the zero division error being logged to the console silently. 
+-- Need to handle cleanup, because after trying 7/0= and getting an exception
+putting in 6 garners the same exception (should just 7/6) -- RESOLVED
+
+8/14/2025 4:12 -- inputs like 03333 are possible, but not always (some
+guards are inb place). Working to narrow down what makes this possible
+
