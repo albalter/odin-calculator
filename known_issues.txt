@@ -12,6 +12,13 @@ nultiplication (need to reproduce to describe). seems to be
 getting a "dirty value" for it's arithmethical input. Ok, 
 pivoting to debug the division.
 
+8/14/25 the order of evaluation in the division function in the backend
+of the program was backwards, meaning a whole lot of bugs resulted. -- RESOLVED
+
 8/14/25 pressing "zero" and then operation never yields proper
 results, not for any opeartion, except maybe addition -- that's 
-why it was overlooked. looking into this now. -- PENDING
+why it was overlooked. looking into this now. -- RESOLVED
+
+8/14/25 while inputing a line of ops "8 * 9 /" we get 0.888888, which
+is wrond since we would normally want to get product of 8 and 9, posssibly 
+followed by the division op, but not this. pivoting to this issue
