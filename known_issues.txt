@@ -5,4 +5,13 @@ it forms an expression similar to x = x =, which
 can be seen as a bug
 
 8/13/25 9:12
-signifier inputs are happening in the reverse order
+signifier inputs are happening in the reverse order -- RESOLVED
+
+8/14/25 ~2:40 multiple bugs with division and a certain bug with 
+nultiplication (need to reproduce to describe). seems to be 
+getting a "dirty value" for it's arithmethical input. Ok, 
+pivoting to debug the division.
+
+8/14/25 pressing "zero" and then operation never yields proper
+results, not for any opeartion, except maybe addition -- that's 
+why it was overlooked. looking into this now. -- PENDING
