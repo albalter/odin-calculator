@@ -241,7 +241,6 @@ button0.addEventListener("click", ()=> {
     }    
 })
 
-
 let buttonC = document.getElementById("clear");
 buttonC.addEventListener("click", ()=>{
     clearInputField();
@@ -257,6 +256,21 @@ ButtonCE.addEventListener("click", ()=> {
 let buttonAdd = document.getElementById("add");
 buttonAdd.addEventListener("click", () =>{
     inputOperation(buttonAdd.textContent)
+})
+
+let buttonSubtract = document.getElementById("subtract");
+buttonSubtract.addEventListener("click", () =>{
+    inputOperation(buttonSubtract.textContent)
+})
+
+let buttonMultiply = document.getElementById("multiply");
+buttonMultiply.addEventListener("click", () =>{
+    inputOperation(buttonMultiply.textContent)
+})
+
+let buttonDivide = document.getElementById("divide");
+buttonDivide.addEventListener("click", () =>{
+    inputOperation(buttonDivide.textContent)
 })
 
 let buttonEquals = document.getElementById("evaluate");
